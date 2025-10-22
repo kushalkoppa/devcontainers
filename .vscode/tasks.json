@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Configure",
+      "type": "shell",
+      "command": "cmake -S ${workspaceFolder}/asw -B ${workspaceFolder}/asw/build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Configure the ASW project"
+    },
+    {
+      "label": "CMake Build",
+      "type": "shell",
+      "command": "cmake --build ${workspaceFolder}/asw/build",
+      "group": "build",
+      "problemMatcher": ["$gcc"],
+      "dependsOn": "CMake Configure",
+      "detail": "Build the ASW targets"
+    },
+    {
+      "label": "CTest",
+      "type": "shell",
+      "command": "ctest --test-dir ${workspaceFolder}/asw/build",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}

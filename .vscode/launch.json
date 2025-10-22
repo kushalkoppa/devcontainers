@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ASW GDB Debug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/asw/build/vecu_demo",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "cwd": "${workspaceFolder}/asw",
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
