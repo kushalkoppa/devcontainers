@@ -1,0 +1,32 @@
+name: ASW CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  build:
+    name: Build and Test (Dev Container)
+    runs-on: ubuntu-latest
+    env:
+      DS_LICENSE_SERVER: ${{ secrets.DS_LICENSE_SERVER }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Dev Container
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            ./scripts/build.sh
+            ctest --test-dir asw/build
+  static-analysis:
+    name: Static Analysis Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run clang-format check
+        run: |
+          sudo apt-get update && sudo apt-get install -y clang-format
+          find asw/src -type f \( -name "*.c" -o -name "*.h" \) | xargs clang-format --dry-run --Werror
